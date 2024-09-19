@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      appBar: AppBar(title: const Text("Homepage")),
+      appBar: AppBar(title: const Text("Homesida")),
 
         drawer: Drawer(
           backgroundColor: Colors.deepOrangeAccent[100],
@@ -15,9 +15,9 @@ class HomePage extends StatelessWidget {
             children: [
               DrawerHeader(
                   child: Image.asset (
-                 "lib/assets/images/icon1.png",
-                  width: 50,
-                  height: 50,
+                 "lib/assets/images/icon/icon1.png",
+                  width: 100,
+                  height: 100,
 
           ),
               ),
@@ -27,14 +27,14 @@ class HomePage extends StatelessWidget {
                 title: const Text ("Home"),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, "/homepage");
+                  Navigator.pushNamed(context, "/homesida");
 
 
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.dangerous),
-                title: const Text ("Blank Page"),
+                leading: const Icon(Icons.rocket),
+                title: const Text ("Asteroid Sida"),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, "/asteroid_page");
@@ -50,8 +50,8 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Image.asset(
               'lib/assets/images/PsBattle_This_orange_cat.jpeg',
-              width: 200,
-              height: 200,
+              width: 500,
+              height: 500,
             ),
           ),
 
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
           // Centered button
           Center(
             child: ElevatedButton(
-              child: const Text("Gå till blankpage"),
+              child: const Text("Gå till Asteroid sidan"),
               onPressed: () {
                 Navigator.pushNamed(context, "/asteroid_page");
               },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_v_2/model/asteroid.dart';
 import 'package:flutter_v_2/nasa_api_service.dart';
-import 'package:url_launcher/url_launcher.dart'; // Import the package for URL launch
+import 'package:url_launcher/url_launcher.dart';
 
 class AsteroidPage extends StatefulWidget {
   const AsteroidPage({super.key});
@@ -17,24 +17,31 @@ class _AsteroidPageState extends State<AsteroidPage> {
   @override
   void initState() {
     super.initState();
-    // Fetch data for today
-    futureAsteroids = nasaApiService.fetchAsteroidsToday('2024-09-01', '2024-09-07');
+    /*
+    futureAsteroids = nasaApiService.fetchAsteroidsToday();
+*/
+    futureAsteroids =
+        nasaApiService.fetchAsteroidsToday('2024-09-01', '2024-09-07');
   }
 
+// Går att öppna URL i Webbläsare men ej i android
+  Future<void> _launchURL(String urlString) async {
+    final Uri url = Uri.parse(urlString);
 
-  // Function to launch the JPL URL
-  Future<void> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(
+        url,
+        mode: LaunchMode.externalApplication,
+      );
     } else {
-      throw 'Opps $url';
+      throw 'Hoppsan! Kunde inte öppna $url';
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(' Lista över Asteroider som ligger nära Jorden')),
+      appBar: AppBar(title: const Text('Lista över Asteroider')),
       body: Center(
         child: FutureBuilder<List<Asteroid>>(
           future: futureAsteroids,
@@ -67,7 +74,7 @@ class _AsteroidPageState extends State<AsteroidPage> {
                       ],
                     ),
                     trailing: asteroid.isHazardous
-                        ? const Icon(Icons.warning, color: Colors.red)
+                        ? const Icon(Icons.dangerous_sharp, color: Colors.red)
                         : const Icon(Icons.check, color: Colors.green),
                     onTap: () {
                       showDialog(
@@ -75,14 +82,16 @@ class _AsteroidPageState extends State<AsteroidPage> {
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: Text(asteroid.name),
-                            content: Text('Vill du see Orbit View?'),
+                            content: Text('Vill du see mer om astroiden?'),
                             actions: [
-                              ElevatedButton(
+                              Center(
+                              child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                   _launchURL(asteroid.nasaJplUrl);
                                 },
-                                child: const Text('Orbit View'),
+                                child: const Text('NASA`s NeoWs Service'),
+                              ),
                               ),
                             ],
                           );
