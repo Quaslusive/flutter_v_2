@@ -38,7 +38,7 @@ class NasaApiService {
           return [];
         }
       } else {
-        throw Exception('Det fanns inga astrodier nära Jorden idag.');
+        throw Exception('Det fanns inga astroider nära Jorden idag.');
       }
     } else {
       throw Exception(

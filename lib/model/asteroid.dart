@@ -20,7 +20,7 @@ class Asteroid {
   });
 
   factory Asteroid.fromJson(Map<String, dynamic> json) {
-    // Extract close_approach_data (first entry)
+
     final closeApproachData = json['close_approach_data'] != null && json['close_approach_data'].isNotEmpty
         ? json['close_approach_data'][0]
         : null;
