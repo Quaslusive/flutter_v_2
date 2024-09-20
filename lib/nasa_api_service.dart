@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_v_2/model/asteroid.dart';
 import 'package:http/http.dart' as http;
 
 class NasaApiService {
-  final String apiKey =
-      'V8rm0v9dfXt821mwqXI26TMeRn0x2hFlX970nmY2';
+/*  final String apiKey = dotenv.env['API_KEY'] ?? 'YOUR_DEFAULT_API_KEY';*/
+  final String apiKey = "";
+
 
 // har försökt att använda "today" endpont men får
 // "Error: TypeError: null: type "Null" is not a subtype of a type"List<dynamic>"

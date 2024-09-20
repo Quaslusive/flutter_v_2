@@ -40,6 +40,8 @@ dependencies:
   url_launcher: ^6.0.20
   cupertino_icons: ^1.0.8
 
+  flutter_dotenv: ^5.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -72,6 +74,7 @@ flutter:
   assets:
     - lib/assets/images/icon/icon1.png
     - lib/assets/images/PsBattle_This_orange_cat.jpeg
+    - lib/assets/.env
 
   # To add assets to your application, add an assets section, like this:
   # assets:
